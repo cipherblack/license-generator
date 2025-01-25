@@ -37,31 +37,22 @@ git clone https://github.com/cipherblack/license-generator.git
 cd license-generator
 ```
 
+### Run the Database file:
+
+```bash
+python DB.py
+```
+
 ### Run the license generation script:
 
 ```bash
-python generate_license.py
+python license.py
 ```
 
 ### Example of how to validate a license:
 
 ```bash
-python validate_license.py LICENSE_KEY
-```
-
-### Example Code:
-
-```python
-from cryptography_module import LicenseGenerator
-
-# Example of generating a license
-license_generator = LicenseGenerator()
-new_license = license_generator.generate_license()
-print("Generated License:", new_license)
-
-# Example of validating a license
-is_valid = license_generator.validate_license(new_license)
-print("License Valid:", is_valid)
+python auth.py
 ```
 
 ## How It Works
