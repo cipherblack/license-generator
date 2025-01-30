@@ -1,79 +1,59 @@
+# License Manager
 
-# License Generator Project
+## Overview
+This Python script provides a license management system that allows you to:
+- Generate unique license keys.
+- Sign and store license keys in an SQLite database.
+- Verify license keys using RSA encryption.
+- Revoke licenses when necessary.
+- Manage license validity periods.
 
-This project is designed to create and validate software licenses using cryptographic techniques. The license generator creates unique license keys that can be used to secure and validate the usage of a software product.
+The script supports command-line arguments for ease of use.
 
 ## Features
+- Uses RSA key pair for signing and verification.
+- Stores licenses in an SQLite database.
+- Allows license expiration handling.
+- Supports revoking of licenses.
 
-- **License Generation:** Generates a unique license key for each user or installation.
-- **License Validation:** Verifies the validity of a license key using cryptographic techniques.
-- **SQLite Database Integration:** Stores generated licenses in an SQLite database for persistence and validation.
+## Installation
+Ensure you have Python 3 installed, then install the required dependencies:
 
-## Requirements
-
-To run this project, you need the following:
-- Python 3.x
-- Required libraries:
-  - `cryptography`
-  - `sqlite3`
-
-Install the dependencies using pip:
-
-```bash
+```sh
 pip install cryptography
 ```
 
 ## Usage
+Run the script with the following options:
 
-### Clone the repository
-
-```bash
-git clone https://github.com/cipherblack/license-generator.git
+### Initialize Database and Generate RSA Keys
+```sh
+python license_manager.py --initialize
 ```
 
-### Navigate to the project directory:
+### Generate a New License
+```sh
+python license_manager.py --generate --length 16 --duration 30
+```
+- `--length`: Length of the license key (default: 16 characters)
+- `--duration`: Validity duration in days (default: 30 days)
 
-```bash
-cd license-generator
+### Verify a License
+```sh
+python license_manager.py --verify LICENSE_KEY
 ```
 
-### Run the Database file:
-
-```bash
-python DB.py
-```
-
-### Run the license generation script:
-
-```bash
-python license.py
-```
-
-### Example of how to validate a license:
-
-```bash
-python auth.py
+### Revoke a License
+```sh
+python license_manager.py --revoke LICENSE_KEY
 ```
 
 ## How It Works
-
-### License Generation
-
-The license is generated using a cryptographic algorithm (such as RSA or AES) and a unique identifier for the user. The generated license is then stored in an SQLite database.
-
-### License Validation
-
-When the license is used, it is validated against the stored licenses in the database to ensure it is valid and hasn’t been tampered with.
-
-## Database
-
-The project uses an SQLite database to store the generated licenses. The database schema is simple, consisting of a table to store:
-
-- License key
-- Creation date
-- Expiration date (optional)
-- Validity status
+1. **Initialization**: Creates an SQLite database and generates RSA key pairs.
+2. **License Generation**: Generates a random license key, signs it with a private key, and stores it in the database.
+3. **License Verification**: Checks if a license is valid by verifying its signature and expiration date.
+4. **License Revocation**: Marks a license as revoked in the database.
 
 ## License
+This project is open-source. Feel free to modify and use it as needed.
 
-This project is licensed under the MIT License
